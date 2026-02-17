@@ -1,0 +1,8 @@
+# No seu .dockerignore
+public/imagens/
+
+node_modules
+.next
+build
+dist
+.git
