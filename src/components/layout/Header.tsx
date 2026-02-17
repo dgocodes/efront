@@ -29,8 +29,8 @@ export default function Header() {
         <Link href="/" className="flex-shrink-0 flex items-center">
           <div className="w-32 md:w-44">
             <img 
-              src="https://www.reval.net/Content/new/images/logo.svg" 
-              alt="Reval Logo" 
+              src="" 
+              alt="Logo da DGOCODES" 
               className="w-full h-auto"
             />
           </div>
