@@ -1,0 +1,1826 @@
+[
+  {
+    "label": "Papelaria e Escritório",
+    "slug": "papelaria-e-escritorio",
+    "ordem": 0,
+    "icon": "PencilLine",
+    "children": [
+      {
+        "label": "Agendas e Planners",
+        "slug": "agendas-e-planners",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Alfinetes, clipes e colchetes",
+        "slug": "alfinetes-clipes-e-colchetes",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Almofadas, tintas e carimbos",
+        "slug": "almofadas-tintas-e-carimbos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Apagadores",
+        "slug": "apagadores",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Aplicador e pino plástico",
+        "slug": "aplicador-e-pino-plastico",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Bingo e Rifa",
+        "slug": "bingo-e-rifa",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Bobinas",
+        "slug": "bobinas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Bolsas e Malas",
+        "slug": "bolsas-e-malas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Borrachas e Elásticos",
+        "slug": "borrachas-e-elasticos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Cadernos e Cadernetas",
+        "slug": "cadernos-e-cadernetas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Calculadoras",
+        "slug": "calculadoras",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Canetas e Corretivos",
+        "slug": "canetas-e-corretivos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Cartão de Visita",
+        "slug": "cartao-de-visita",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Cartaz para Ofertas e Kit Escrita",
+        "slug": "cartaz-para-ofertas-e-kit-escrita",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Colas",
+        "slug": "colas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Crachá e Cordões",
+        "slug": "cracha-e-cordoes",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Dicionários",
+        "slug": "dicionarios",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Display",
+        "slug": "display",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Embalagem",
+        "slug": "embalagem",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Encadernação e Plastificação",
+        "slug": "encadernacao-e-plastificacao",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Envelopes",
+        "slug": "envelopes",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Equipamentos",
+        "slug": "equipamentos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Escolar",
+        "slug": "escolar",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Estiletes e Laminas",
+        "slug": "estiletes-e-laminas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Estojos Escolares",
+        "slug": "estojos-escolares",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Etiquetas",
+        "slug": "etiquetas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Fichas",
+        "slug": "fichas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Fita Adesiva e Suportes",
+        "slug": "fita-adesiva-e-suportes",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Fita p/ Máquinas e Impressoras",
+        "slug": "fita-p-maquinas-e-impressoras",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Giz",
+        "slug": "giz",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Grampeadores e Grampos",
+        "slug": "grampeadores-e-grampos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Lancheiras",
+        "slug": "lancheiras",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Lápis e Apontadores",
+        "slug": "lapis-e-apontadores",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Lapiseiras e Grafites",
+        "slug": "lapiseiras-e-grafites",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Livro Ilustrado e Escolar",
+        "slug": "livro-ilustrado-e-escolar",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Livros e Impressos Fiscais",
+        "slug": "livros-e-impressos-fiscais",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Marcador para Página",
+        "slug": "marcador-para-pagina",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Mochilas",
+        "slug": "mochilas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Organizadores",
+        "slug": "organizadores",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Papéis A4",
+        "slug": "papeis-a4",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Papel Escolar",
+        "slug": "papel-escolar",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Papel Carbono",
+        "slug": "papel-carbono",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Papel para Artesanato",
+        "slug": "papel-para-artesanato",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Papel para Embalagem",
+        "slug": "papel-para-embalagem",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Papel para Impressão",
+        "slug": "papel-para-impressao",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Papel Sulfite",
+        "slug": "papel-sulfite",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Pastas",
+        "slug": "pastas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Percevejo",
+        "slug": "percevejo",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Perfuradores",
+        "slug": "perfuradores",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Pincel Marcador",
+        "slug": "pincel-marcador",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Placas de Sinalização",
+        "slug": "placas-de-sinalizacao",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Plástico Adesivo",
+        "slug": "plastico-adesivo",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Plástico para Encapar",
+        "slug": "plastico-para-encapar",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Porta Documento",
+        "slug": "porta-documento",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Porta Caneta",
+        "slug": "porta-caneta",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Pranchetas",
+        "slug": "pranchetas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Quadros e Acessórios",
+        "slug": "quadros-e-acessorios",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Réguas e Conjuntos",
+        "slug": "reguas-e-conjuntos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Tesouras",
+        "slug": "tesouras",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Tinta Escolar",
+        "slug": "tinta-escolar",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Transparência",
+        "slug": "transparencia",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Tubo para Projetos",
+        "slug": "tubo-para-projetos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Mangá e Quadrinhos - HQ",
+        "slug": "manga-e-quadrinhos-hq",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Blocos",
+        "slug": "blocos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Fichários e acessórios",
+        "slug": "ficharios-e-acessorios",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Brinquedos",
+    "slug": "brinquedos",
+    "ordem": 0,
+    "icon": "Gamepad2",
+    "children": [
+      {
+        "label": "Livro Ilustrado e Escolar",
+        "slug": "livro-ilustrado-e-escolar",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Artes e Criatividade",
+        "slug": "artes-e-criatividade",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Bebês",
+        "slug": "bebes",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Bonecas e Acessórios",
+        "slug": "bonecas-e-acessorios",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Bonecos e Figuras de ação",
+        "slug": "bonecos-e-figuras-de-acao",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Carrinhos",
+        "slug": "carrinhos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Educativos",
+        "slug": "educativos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Faz de Conta",
+        "slug": "faz-de-conta",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Instrumentos Musicais",
+        "slug": "instrumentos-musicais",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Jogos",
+        "slug": "jogos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Brinquedos diversos",
+        "slug": "brinquedos-diversos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Lazer",
+        "slug": "lazer",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Maquiagem e Vestuário",
+        "slug": "maquiagem-e-vestuario",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Massinhas e Slimes",
+        "slug": "massinhas-e-slimes",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Mattel",
+        "slug": "mattel",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Mini Veículos",
+        "slug": "mini-veiculos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Móveis e decoração",
+        "slug": "moveis-e-decoracao",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Montar",
+        "slug": "montar",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Pedagógico",
+        "slug": "pedagogico",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Almofadas e Pelúcias",
+        "slug": "almofadas-e-pelucias",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Pilhas e Baterias",
+        "slug": "pilhas-e-baterias",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Doces e Guloseimas",
+        "slug": "doces-e-guloseimas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Álbum e Figurinhas",
+        "slug": "album-e-figurinhas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Walkie Talkie",
+        "slug": "walkie-talkie",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Esporte e Lazer",
+        "slug": "esporte-e-lazer",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Bebês",
+    "slug": "bebes",
+    "ordem": 0,
+    "icon": "Baby",
+    "children": [
+      {
+        "label": "Hora do banho",
+        "slug": "hora-do-banho",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Hora do passeio",
+        "slug": "hora-do-passeio",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Hora da papinha",
+        "slug": "hora-da-papinha",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Cuidando da saúde",
+        "slug": "cuidando-da-saude",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Hora do banheiro",
+        "slug": "hora-do-banheiro",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Acessórios para casa",
+        "slug": "acessorios-para-casa",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Informática",
+    "slug": "informatica",
+    "ordem": 0,
+    "icon": "Monitor",
+    "children": [
+      {
+        "label": "Mochilas",
+        "slug": "mochilas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Papel para Impressão",
+        "slug": "papel-para-impressao",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Acessório para Computador",
+        "slug": "acessorio-para-computador",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Áudio e Vídeo",
+        "slug": "audio-e-video",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Cabos e Carregadores",
+        "slug": "cabos-e-carregadores",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Eletrônicos",
+        "slug": "eletronicos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Energia",
+        "slug": "energia",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Gamer",
+        "slug": "gamer",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Impressão e Suprimentos",
+        "slug": "impressao-e-suprimentos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Mídias e Armazenamento",
+        "slug": "midias-e-armazenamento",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Teclado & Mouse",
+        "slug": "teclado-mouse",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Rede",
+        "slug": "rede",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Telefonia",
+        "slug": "telefonia",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Computadores e notebooks",
+        "slug": "computadores-e-notebooks",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Eletroeletrônicos",
+    "slug": "eletroeletronicos",
+    "ordem": 0,
+    "icon": "Zap",
+    "children": [
+      {
+        "label": "Automação",
+        "slug": "automacao",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Telefonia",
+        "slug": "telefonia",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Acessórios Musicais",
+        "slug": "acessorios-musicais",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Áudio e Video",
+        "slug": "audio-e-video",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Pilhas e Baterias",
+        "slug": "pilhas-e-baterias",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Eletroportáteis",
+        "slug": "eletroportateis",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Saúde",
+    "slug": "saude",
+    "ordem": 0,
+    "icon": "HeartPulse",
+    "children": [
+      {
+        "label": "Beleza",
+        "slug": "beleza",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Cuidados diários",
+        "slug": "cuidados-diarios",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Equipamentos para saúde",
+        "slug": "equipamentos-para-saude",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Mamãe e Bebê",
+        "slug": "mamae-e-bebe",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Primeiros socorros",
+        "slug": "primeiros-socorros",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Festas",
+    "slug": "festas",
+    "ordem": 0,
+    "icon": "PartyPopper",
+    "children": [
+      {
+        "label": "Áudio e Vídeo",
+        "slug": "audio-e-video",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Alimentos",
+        "slug": "alimentos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Balões e Acessórios",
+        "slug": "baloes-e-acessorios",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Convites",
+        "slug": "convites",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Decoração de Festas",
+        "slug": "decoracao-de-festas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Embalagens para Presentes",
+        "slug": "embalagens-para-presentes",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Descartáveis",
+        "slug": "descartaveis",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Garrafas e Copos",
+        "slug": "garrafas-e-copos",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Cartões e Presentes",
+    "slug": "cartoes-e-presentes",
+    "ordem": 0,
+    "icon": "Gift",
+    "children": [
+      {
+        "label": "Cartões Comemorativos",
+        "slug": "cartoes-comemorativos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Embalagens para Presentes",
+        "slug": "embalagens-para-presentes",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Artesanato",
+    "slug": "artesanato",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Artigos para Artesanato",
+        "slug": "artigos-para-artesanato",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Colas para Artesanato",
+        "slug": "colas-para-artesanato",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Costura e Aviamentos",
+        "slug": "costura-e-aviamentos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "EPS (isopor)",
+        "slug": "eps-isopor",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Pintura",
+        "slug": "pintura",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Brilhos e Pedrarias",
+        "slug": "brilhos-e-pedrarias",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Corantes para tingimento",
+        "slug": "corantes-para-tingimento",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "EVA",
+        "slug": "eva",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Trabalhos manuais",
+        "slug": "trabalhos-manuais",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Desenho",
+        "slug": "desenho",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "TNT e Feltro",
+        "slug": "tnt-e-feltro",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Coffee-break e descartáveis",
+    "slug": "coffee-break-e-descartaveis",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Coffee-break",
+        "slug": "coffee-break",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Descartáveis",
+        "slug": "descartaveis",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Doces e Guloseimas",
+        "slug": "doces-e-guloseimas",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Casa e Construção",
+    "slug": "casa-e-construcao",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Ferramentas e Acessórios",
+        "slug": "ferramentas-e-acessorios",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Iluminação",
+        "slug": "iluminacao",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Limpeza da casa",
+        "slug": "limpeza-da-casa",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Eletroportáteis",
+        "slug": "eletroportateis",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Banheiro",
+        "slug": "banheiro",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Climatização e Ventilação",
+        "slug": "climatizacao-e-ventilacao",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Cozinha",
+        "slug": "cozinha",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Decoração",
+        "slug": "decoracao",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Jardim e Varanda",
+        "slug": "jardim-e-varanda",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Lavanderia",
+        "slug": "lavanderia",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Materiais elétricos",
+        "slug": "materiais-eletricos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Móveis",
+        "slug": "moveis",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Organização",
+        "slug": "organizacao",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Pintura e acessórios",
+        "slug": "pintura-e-acessorios",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Segurança",
+        "slug": "seguranca",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Utilidades domésticas",
+        "slug": "utilidades-domesticas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Cama, Mesa e Banho",
+        "slug": "cama-mesa-e-banho",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Natal",
+    "slug": "natal",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Cartões Comemorativos",
+        "slug": "cartoes-comemorativos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Decoração de Ambientes",
+        "slug": "decoracao-de-ambientes",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Embalagens e presentes",
+        "slug": "embalagens-e-presentes",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Escolar",
+    "slug": "escolar",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Bloco Escolar",
+        "slug": "bloco-escolar",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Bolsas e Malas",
+        "slug": "bolsas-e-malas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Estojos Escolares",
+        "slug": "estojos-escolares",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Lancheiras",
+        "slug": "lancheiras",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Mochilas",
+        "slug": "mochilas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Aventais",
+        "slug": "aventais",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Divisórias",
+        "slug": "divisorias",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Fichários",
+        "slug": "ficharios",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Maletas e Pastas",
+        "slug": "maletas-e-pastas",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Verão",
+    "slug": "verao",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Esportes",
+        "slug": "esportes",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Brinquedos diversos",
+        "slug": "brinquedos-diversos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Praia e Piscina",
+        "slug": "praia-e-piscina",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Ventilação",
+        "slug": "ventilacao",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Camping e Aventura",
+        "slug": "camping-e-aventura",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Páscoa",
+    "slug": "pascoa",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Etiquetas",
+        "slug": "etiquetas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Almofadas e Pelúcias",
+        "slug": "almofadas-e-pelucias",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Artigos para Artesanato",
+        "slug": "artigos-para-artesanato",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Doces e Guloseimas",
+        "slug": "doces-e-guloseimas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Fitas e Laços",
+        "slug": "fitas-e-lacos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Embalagens",
+        "slug": "embalagens",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Pelúcias e Decoração",
+        "slug": "pelucias-e-decoracao",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Pet Shop",
+    "slug": "pet-shop",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Acessórios para alimentação",
+        "slug": "acessorios-para-alimentacao",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Brinquedos",
+        "slug": "brinquedos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Caixas e bolsas para transporte",
+        "slug": "caixas-e-bolsas-para-transporte",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Casinhas e acessórios",
+        "slug": "casinhas-e-acessorios",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Coleiras, Guias e Peitorais",
+        "slug": "coleiras-guias-e-peitorais",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Higiene e limpeza",
+        "slug": "higiene-e-limpeza",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Ossinhos e Petiscos",
+        "slug": "ossinhos-e-petiscos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Shampoo e produtos para o banho",
+        "slug": "shampoo-e-produtos-para-o-banho",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Camas e cobertores",
+        "slug": "camas-e-cobertores",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Delivery",
+    "slug": "delivery",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Etiquetas",
+        "slug": "etiquetas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Descartáveis",
+        "slug": "descartaveis",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Embalagens",
+        "slug": "embalagens",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Carnaval",
+    "slug": "carnaval",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Bolsas e Malas",
+        "slug": "bolsas-e-malas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Faz de Conta",
+        "slug": "faz-de-conta",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Maquiagem e Vestuário",
+        "slug": "maquiagem-e-vestuario",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Decoração de Festas",
+        "slug": "decoracao-de-festas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Colas para Artesanato",
+        "slug": "colas-para-artesanato",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Costura e Aviamentos",
+        "slug": "costura-e-aviamentos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Brilhos e Pedrarias",
+        "slug": "brilhos-e-pedrarias",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Fitas e Laços",
+        "slug": "fitas-e-lacos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Utilidades domésticas",
+        "slug": "utilidades-domesticas",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Esportes e Lazer",
+    "slug": "esportes-e-lazer",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Skates, Patins e Patinetes",
+        "slug": "skates-patins-e-patinetes",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Basquete",
+        "slug": "basquete",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Beach Tennis",
+        "slug": "beach-tennis",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Bola para lazer",
+        "slug": "bola-para-lazer",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Camping e Aventura",
+        "slug": "camping-e-aventura",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Ciclismo",
+        "slug": "ciclismo",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Exercícios e Academia",
+        "slug": "exercicios-e-academia",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Futebol",
+        "slug": "futebol",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Handebol",
+        "slug": "handebol",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Moda esportiva",
+        "slug": "moda-esportiva",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Natação",
+        "slug": "natacao",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Ping Pong",
+        "slug": "ping-pong",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Praia e Piscina",
+        "slug": "praia-e-piscina",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Vôlei",
+        "slug": "volei",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Tênis",
+        "slug": "tenis",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Calçados e Vestuário",
+    "slug": "calcados-e-vestuario",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Bolsas e Malas",
+        "slug": "bolsas-e-malas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Moda esportiva",
+        "slug": "moda-esportiva",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Calçados",
+        "slug": "calcados",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Vestuário",
+        "slug": "vestuario",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Halloween",
+    "slug": "halloween",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Bonecas e Acessórios",
+        "slug": "bonecas-e-acessorios",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Maquiagem e Vestuário",
+        "slug": "maquiagem-e-vestuario",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Balões e Acessórios",
+        "slug": "baloes-e-acessorios",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Decoração de Festas",
+        "slug": "decoracao-de-festas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Doces e Guloseimas",
+        "slug": "doces-e-guloseimas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "EVA",
+        "slug": "eva",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "TNT e Feltro",
+        "slug": "tnt-e-feltro",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Fitas e Laços",
+        "slug": "fitas-e-lacos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Produtos Copa do Mundo",
+        "slug": "produtos-copa-do-mundo",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Papelaria Fofa",
+    "slug": "papelaria-fofa",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Agendas e Planners",
+        "slug": "agendas-e-planners",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Borrachas e Elásticos",
+        "slug": "borrachas-e-elasticos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Cadernos e Cadernetas",
+        "slug": "cadernos-e-cadernetas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Calculadoras",
+        "slug": "calculadoras",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Canetas e Corretivos",
+        "slug": "canetas-e-corretivos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Colas",
+        "slug": "colas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Escolar",
+        "slug": "escolar",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Estiletes e Laminas",
+        "slug": "estiletes-e-laminas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Estojos Escolares",
+        "slug": "estojos-escolares",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Fita Adesiva e Suportes",
+        "slug": "fita-adesiva-e-suportes",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Grampeadores e Grampos",
+        "slug": "grampeadores-e-grampos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Lápis e Apontadores",
+        "slug": "lapis-e-apontadores",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Lapiseiras e Grafites",
+        "slug": "lapiseiras-e-grafites",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Mochilas",
+        "slug": "mochilas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Pranchetas",
+        "slug": "pranchetas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Réguas e Conjuntos",
+        "slug": "reguas-e-conjuntos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Tesouras",
+        "slug": "tesouras",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Maletas e Pastas",
+        "slug": "maletas-e-pastas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Blocos",
+        "slug": "blocos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Organização",
+        "slug": "organizacao",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Espaço 3M",
+    "slug": "espaco-3m",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Colas",
+        "slug": "colas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Fita Adesiva e Suportes",
+        "slug": "fita-adesiva-e-suportes",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Blocos",
+        "slug": "blocos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Organização",
+        "slug": "organizacao",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Utilidades domésticas",
+        "slug": "utilidades-domesticas",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Primeiros socorros",
+        "slug": "primeiros-socorros",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Espaço BIC",
+    "slug": "espaco-bic",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Colas",
+        "slug": "colas",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Neurodiversidade",
+    "slug": "neurodiversidade",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Produtos para Casa",
+        "slug": "produtos-para-casa",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Informática",
+        "slug": "informatica",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Cabelo Maluco",
+    "slug": "cabelo-maluco",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Maquiagem e Vestuário",
+        "slug": "maquiagem-e-vestuario",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Costura e Aviamentos",
+        "slug": "costura-e-aviamentos",
+        "icon": "",
+        "ordem": 0
+      },
+      {
+        "label": "Fitas e Laços",
+        "slug": "fitas-e-lacos",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  },
+  {
+    "label": "Espaço Plasútil",
+    "slug": "espaco-plasutil",
+    "ordem": 0,
+    "icon": "",
+    "children": [
+      {
+        "label": "Escolar",
+        "slug": "escolar",
+        "icon": "",
+        "ordem": 0
+      }
+    ]
+  }
+]

@@ -1,0 +1,51 @@
+[
+  {
+    "id": "3m",
+    "nome": "3M",
+    "logo": "/logos/3m.png",
+    "banner": "/banners/3m-banner.jpg",
+    "link": "/m/3m"
+  },
+  {
+    "id": "bic",
+    "nome": "BIC",
+    "logo": "/logos/bic.png",
+    "banner": "/banners/bic-banner.jpg",
+    "link": "/m/bic"
+  },
+  {
+    "id": "foroni",
+    "nome": "Foroni",
+    "logo": "/logos/foroni.png",
+    "banner": "/banners/foroni-banner.jpg",
+    "link": "/m/foroni"
+  },
+  {
+    "id": "tilibra",
+    "nome": "Tilibra",
+    "logo": "/logos/tilibra.png",
+    "banner": "/banners/tilibra-banner.jpg",
+    "link": "/m/tilibra"
+  },
+  {
+    "id": "jandaia",
+    "nome": "Jandaia",
+    "logo": "/logos/jandaia.png",
+    "banner": "/banners/jandaia-banner.jpg",
+    "link": "/m/jandaia"
+  },
+  {
+    "id": "acrilex",
+    "nome": "Acrilex",
+    "logo": "/logos/acrilex.png",
+    "banner": "/banners/acrilex-banner.jpg",
+    "link": "/m/acrilex"
+  },
+  {
+    "id": "plasutil",
+    "nome": "Plasutil",
+    "logo": "/logos/plasutil.png",
+    "banner": "/banners/plasutil-banner.jpg",
+    "link": "/m/plasutil"
+  }  
+]

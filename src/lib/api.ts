@@ -1,12 +1,11 @@
 import { SearchResponse } from '@/types/Produto';
+import { Console } from 'console';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
-// Helper para evitar repetição de lógica de fetch
 async function fetchFromApi<T>(endpoint: string, params?: URLSearchParams): Promise<T> {
   const url = `${API_URL}${endpoint}${params ? `?${params.toString()}` : ''}`;
-  
-  // Log apenas em dev
+
   if (process.env.NODE_ENV === 'development') {
     console.log(`[API Debug] Fetching: ${url}`);
   }
@@ -15,8 +14,7 @@ async function fetchFromApi<T>(endpoint: string, params?: URLSearchParams): Prom
 
   if (!res.ok) {
     const errorBody = await res.text().catch(() => 'No body');
-    console.error(`[API Error] Status: ${res.status} em ${url}. Detalhe: ${errorBody}`);
-    throw new Error(`Erro na API: ${res.statusText}`);
+    throw new Error(`Erro na API: ${res.statusText} - ${errorBody}`);
   }
 
   return res.json();
@@ -24,9 +22,7 @@ async function fetchFromApi<T>(endpoint: string, params?: URLSearchParams): Prom
 
 export interface SearchFilters {
   query?: string;
-  marcas?: string;
-  categoria?: string | string[];
-  tags?: string;
+  filters?: string; // Agora recebemos a string "valor1_valor2"
   sort?: string;
   page?: number;
   limit?: number;
@@ -35,34 +31,54 @@ export interface SearchFilters {
 export async function getProdutos(filters: SearchFilters): Promise<SearchResponse> {
   const urlParams = new URLSearchParams();
 
-  // Campos que devem ser transformados em filters[]
-  const arrayFields = ['marca', 'categoria', 'tags', 'embalagem'];
+  // 1. Configura paginação e busca
+  urlParams.append('pageSize', String(filters?.limit || 20));
+  if (filters.query) urlParams.append('query', filters.query);
+  if (filters.page) urlParams.append('page', String(filters.page));
+  if (filters.sort) urlParams.append('sort', filters.sort);
 
-  Object.entries(filters).forEach(([key, value]) => {
-    if (value === undefined || value === null || value === '') return;
+  console.log('Parâmetros recebidos para busca:', filters);
 
-    if (arrayFields.includes(key)) {
-      if (Array.isArray(value)) {
-        value.forEach((item) => {
-          if (item) urlParams.append('filters', item.toString());
-        });
-      } else {
-        urlParams.append('filters', value.toString());
-      }
-    } else {
-      // Campos normais: q, page, limit, sort
-      urlParams.append(key, value.toString());
-    }
-  });
-
-  console.log('URL Params construídos:', urlParams.toString());
+  // 2. Trata a string de filtros com "_" e converte para múltiplos params de API
+  if (filters.filters) {
+    const filtersArray = filters.filters.split('_');
+    filtersArray.forEach(f => {
+      if (f) urlParams.append('filters', f);
+    });
+  }
 
   const data = await fetchFromApi<SearchResponse>('/products', urlParams);
-  
-  console.log('Resposta da API:', data);
-  // A MÁGICA ACONTECE AQUI:
-  // Agora garantimos que o objeto segue as regras do seu constructor
   return new SearchResponse(data);
+}
+
+// Para a Home (mantendo suporte ao array se você chamar direto no código)
+export async function getHomeProducts(
+  sort: string = 'mais-vendidos', 
+  pageSize: number = 10, 
+  filters: string[] = [],
+  cache: boolean = true,
+  cacheDuration: number = 600
+): Promise<SearchResponse> {
+  
+  const urlParams = new URLSearchParams({
+    sort: sort,
+    pageSize: pageSize.toString()
+  });
+
+  filters.forEach(filter => {
+    if (filter) urlParams.append('filters', filter);
+  });
+
+  const fetchOptions: RequestInit = {
+    method: 'GET',
+    ...(cache ? { next: { revalidate: cacheDuration } } : { cache: 'no-store' })
+  };
+
+  const res = await fetch(`${API_URL}/products?${urlParams.toString()}`, fetchOptions);
+  
+  if (!res.ok) throw new Error("Erro ao buscar produtos da home");
+  
+  return res.json();
 }
 
 export async function getProdutosPorTag(tag: string): Promise<SearchResponse> {

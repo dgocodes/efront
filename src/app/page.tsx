@@ -1,48 +1,76 @@
-// import SearchBar from "@/components/SearchBar";
+import React from 'react';
+import HeroCarousel from '@/components/layout/HeroCarousel';
+import { getHomeProducts } from '@/lib/api'; // Sua função que já tem o cache de 10min
+import ProductCarousel from '@/components/product/ProductHomeCarousel';
+import ProductGrid from '@/components/product/ProductHomeGrid';
+import BrandCarousel from '@/components/brand/BrandCarousel';
 
-import { getProdutos, getProdutosPorTag } from "@/lib/api";
-
-// export default function Home() {
-//   return (
-//     <main className="flex min-h-screen flex-col items-center justify-center p-6 bg-gray-50">
-//       <div className="w-full max-w-2xl text-center space-y-8">
-//         <h1 className="text-6xl font-black text-gray-900 tracking-tighter">
-//           CATÁLOGO <span className="text-blue-600">PRO</span>
-//         </h1>
-//         <p className="text-gray-500 text-lg">Milhares de produtos a um clique de distância.</p>
-//         {/* Passamos uma prop para o SearchBar saber que deve ir para /b */}
-//         <SearchBar isHome={true} />
-//       </div>
-//     </main>
-//   );
-// }
+import marcasRelevantes from "@/data/marcas-relevantes.json";
 
 export default async function HomePage() {
-  // Chamadas simultâneas para carregar a home rápido
-  const [maisVendidos, ofertas, fofuras] = await Promise.all([
-    // getProdutosPorTag("mais-procurados"),
-    // getProdutosPorTag("melhores-ofertas"),
-    [],
-    [],
-    [],
-    []
-  ]);
+  // 1. Busca os dados diretamente no servidor (Server Component)
+  // O Next.js vai cachear isso conforme o revalidate: 600 que você definiu na api.ts
+  const destaquesResult = await getHomeProducts();
+  const tilibraResult = await getHomeProducts(undefined, undefined, ['tilibra']);
 
   return (
-   <main className="w-full">
-      
-      {/* 1. Banner fora do container = Largura Total */}
-      {/* <MainBanner /> */}
-      
-      {/* 2. Agora sim, o conteúdo que precisa de margem entra no container */}
-      {/* <div className="container mx-auto px-6 space-y-8 mt-8">
-        <ProductCarousel titulo="Os Queridinhos 🔥" produtos={maisVendidos.items} />
-         */}
-        {/* <BannerMeioPagina /> */}
-        
-        {/* <ProductCarousel titulo="Melhores Ofertas ✨" produtos={ofertas.items} />
-      </div> */}
+    <main className="min-h-screen bg-gray-50">
+      <HeroCarousel />
+
+      <BrandCarousel title="Marcas Relevantes" />
+
+
+      {/* 1. GRADE FIXA: Impacto imediato, sem espera de JS */}
+      <ProductGrid
+        products={destaquesResult?.items || []}
+        title="Destaques da Semana"
+        enabletitle={true}
+        showTotal={false}
+        showSort={false}
+      />
+
+      {/* 2. BANNER DE MEIO (Opcional, mas ajuda muito na UX) */}
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="group relative w-full h-48 md:h-[450px] overflow-hidden rounded-[2rem] shadow-xl transition-transform duration-500 hover:scale-[1.005]">
+          <img
+            src="https://www.reval.net/imagem/banner/home/15.jpg"
+            alt="Promoção Tilibra"
+            className="w-full h-full object-cover object-center"
+          />
+
+          {/* Overlay para profundidade */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60 group-hover:opacity-30 transition-opacity duration-500" />
+
+          {/* Link opcional cobrindo todo o banner */}
+          <a href="/tilibra" className="absolute inset-0 z-10" aria-label="Ver produtos Tilibra"></a>
+        </div>
+      </div>
+
+
+      {/* 3. CARROSSEL: Ótimo para explorar coleções grandes */}
+      <ProductCarousel
+        products={tilibraResult?.items || []}
+        title="Exclusivos Tilibra"
+      />
+
+
+      {/* 2. BANNER FINAL (Opcional, mas ajuda muito na UX) */}
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="group relative w-full h-48 md:h-[450px] overflow-hidden rounded-[2rem] shadow-xl transition-transform duration-500 hover:scale-[1.005]">
+          <img
+            src="https://www.reval.net/imagem/banner/home/12.jpg"
+            alt="Instagram Mundo Reval"
+            className="w-full h-full object-cover object-center"
+          />
+
+          {/* Overlay para profundidade */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-60 group-hover:opacity-30 transition-opacity duration-500" />
+
+          {/* Link opcional cobrindo todo o banner */}
+          <a href="https://www.instagram.com/mundoreval/" target='blank' className="absolute inset-0 z-10" aria-label="Visitar Instagram do Mundo Reval"></a>
+        </div>
+      </div>
 
     </main>
-  )
+  );
 }
