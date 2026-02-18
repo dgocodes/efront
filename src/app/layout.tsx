@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/NavBar";
 import Footer from "@/components/layout/Footer";
 // Importe o JSON aqui no Layout
 import categoriesData from "@/data/categorias.json";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,9 @@ export default function RootLayout({
     <html lang="pt-br">
       <body className={`${inter.className} bg-gray-50 text-gray-900 antialiased`}>
         {/* A Navbar é colocada aqui para aparecer em TODAS as páginas */}
-        <Navbar categoriesData={categoriesData} />
+        <Suspense fallback={<div className="h-20 bg-white border-b" />}>
+          <Navbar categoriesData={categoriesData} />
+        </Suspense>
 
         {/* O 'main' recebe as páginas específicas. 
             O padding-bottom opcional ajuda a não encostar no rodapé */}

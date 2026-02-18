@@ -5,8 +5,6 @@ import ProductCarousel from '@/components/product/ProductHomeCarousel';
 import ProductGrid from '@/components/product/ProductHomeGrid';
 import BrandCarousel from '@/components/brand/BrandCarousel';
 
-import marcasRelevantes from "@/data/marcas-relevantes.json";
-
 export default async function HomePage() {
   // 1. Busca os dados diretamente no servidor (Server Component)
   // O Next.js vai cachear isso conforme o revalidate: 600 que você definiu na api.ts
