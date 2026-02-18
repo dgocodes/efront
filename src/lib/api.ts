@@ -22,10 +22,11 @@ async function fetchFromApi<T>(endpoint: string, params?: URLSearchParams): Prom
 
 export interface SearchFilters {
   query?: string;
-  filters?: string; // Agora recebemos a string "valor1_valor2"
+  filters?: string; 
   sort?: string;
   page?: number;
   limit?: number;
+  slug?: string; // Novo campo para categoria
 }
 
 export async function getProdutos(filters: SearchFilters): Promise<SearchResponse> {
@@ -39,13 +40,27 @@ export async function getProdutos(filters: SearchFilters): Promise<SearchRespons
 
   console.log('Parâmetros recebidos para busca:', filters);
 
-  // 2. Trata a string de filtros com "_" e converte para múltiplos params de API
-  if (filters.filters) {
-    const filtersArray = filters.filters.split('_');
-    filtersArray.forEach(f => {
-      if (f) urlParams.append('filters', f);
+// Criamos um Set para evitar filtros duplicados na URL
+  const uniqueFilters = new Set<string>();
+
+  // Adiciona o slug primeiro, se ele existir
+  if (filters.slug) {
+     filters.slug.split('_').forEach(f => {
+      if (f) uniqueFilters.add(f);
     });
   }
+
+  // Adiciona os outros filtros vindos da string separada por "_"
+  if (filters.filters) {
+    filters.filters.split('_').forEach(f => {
+      if (f) uniqueFilters.add(f);
+    });
+  }
+
+  // Joga tudo para o URLSearchParams como múltiplos parâmetros 'filters'
+  uniqueFilters.forEach(f => {
+    urlParams.append('filters', f);
+  });
 
   const data = await fetchFromApi<SearchResponse>('/products', urlParams);
   return new SearchResponse(data);

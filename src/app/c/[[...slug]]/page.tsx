@@ -14,10 +14,10 @@ export default async function CategoriaPage({
     const resolvedSearchParams = await searchParams;
 
     const slugs = resolvedParams.slug || [];
-    const categoriaSlug = slugs.join('/');
     const isLastLevel = slugs.length >= 2; // Define se é o último nível (ajuste se tiver 3 níveis)
 
     const filtersRaw = resolvedSearchParams.filters;
+    const filterslug = slugs.join('_');
     const activeFilters = typeof filtersRaw === 'string' ? filtersRaw.split('_') : [];
     const currentSort = (resolvedSearchParams.sort as string) || 'mais-vendidos';
     const currentPage = Number(resolvedSearchParams.page) || 1;
@@ -27,7 +27,8 @@ export default async function CategoriaPage({
         page: currentPage,
         limit: pageSize,
         sort: currentSort,
-        filters: typeof filtersRaw === 'string' ? filtersRaw : undefined
+        filters: typeof filtersRaw === 'string' ? filtersRaw : undefined,
+        slug: filterslug || undefined,
     });
 
     const sanitizedFacets = JSON.parse(JSON.stringify(response.facets || []));
