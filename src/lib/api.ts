@@ -1,4 +1,4 @@
-import { SearchResponse } from '@/types/Produto';
+import { Item, SearchResponse } from '@/types/Produto';
 import { Console } from 'console';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
@@ -65,6 +65,13 @@ export async function getProdutos(filters: SearchFilters): Promise<SearchRespons
   const data = await fetchFromApi<SearchResponse>('/products', urlParams);
   return new SearchResponse(data);
 }
+
+
+export async function getProdutoBySlug(slug: string) : Promise<Item>  {
+  const urlParams = new URLSearchParams({ slug });
+  return fetchFromApi<Item>(`/products/${urlParams.toString()}`);
+}
+
 
 // Para a Home (mantendo suporte ao array se você chamar direto no código)
 export async function getHomeProducts(
