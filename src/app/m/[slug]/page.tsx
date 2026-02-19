@@ -1,8 +1,8 @@
 // app/marca/[slug]/page.tsx
 
 import SearchFiltersSideBar from "@/components/filters/SearchFiltersSideBar";
-import BrandBanner from "@/components/layout/BrandBanner";
-import ProductGrid from "@/components/product/ProductHomeGrid";
+import BrandBanner from "@/components/brand/BrandBanner";
+import ProductGrid from "@/components/product/ProductGrid";
 import { getProdutos } from "@/lib/api";
 
 export default async function MarcaPage({

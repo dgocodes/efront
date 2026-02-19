@@ -1,6 +1,6 @@
 import SearchFiltersSideBar from "@/components/filters/SearchFiltersSideBar";
 import MobileFilters from "@/components/layout/MobileFilters";
-import ProductGrid from "@/components/product/ProductHomeGrid";
+import ProductGrid from "@/components/product/ProductGrid";
 import { getProdutos } from "@/lib/api";
 
 export default async function SearchPage({
