@@ -1,16 +1,9 @@
 [
   {
     "id": 1,
-    "image": "https://www.reval.net/imagem/banner/slide/116.jpg",
+    "image": "/banners/pascoa.jpg",
     "title": "Sua Papelaria Online",
     "subtitle": "Milhares de produtos com entrega rápida.",
     "link": "/categoria/papelaria-e-escritorio"
-  },
-  {
-    "id": 2,
-    "image": "https://www.reval.net/imagem/banner/slide/116.jpg",
-    "title": "Volta às Aulas 2026",
-    "subtitle": "As melhores marcas com os melhores preços.",
-    "link": "/categoria/festas"
   }
 ]

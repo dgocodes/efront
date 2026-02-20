@@ -1,4 +1,4 @@
-import { getProdutoBySlug } from '@/lib/api';
+import { getProdutoBySlug } from '@/lib/produtos';
 import ProductTabs from '@/components/product/ProductTabs';
 import BrandCarousel from '@/components/brand/BrandCarousel';
 import ProductInfo from '@/components/product/ProductInfo';

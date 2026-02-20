@@ -1,5 +1,5 @@
 import HeroCarousel from '@/components/layout/HeroCarousel';
-import { getHomeProducts } from '@/lib/api'; // Sua função que já tem o cache de 10min
+import { getHomeProducts } from '@/lib/produtos'; // Sua função que já tem o cache de 10min
 import ProductCarousel from '@/components/product/ProductHomeCarousel';
 import ProductGrid from '@/components/product/ProductGrid';
 import BrandCarousel from '@/components/brand/BrandCarousel';

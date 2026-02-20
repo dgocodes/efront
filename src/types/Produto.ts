@@ -1,5 +1,5 @@
 export class SearchResponse {
-  items: Item[];
+  items: Produto[];
   facets: Facet[];
   currentPage: number;
   pageSize: number;
@@ -7,7 +7,7 @@ export class SearchResponse {
   processingTimeMs: number;
 
   constructor(data?: Partial<SearchResponse>) {
-    this.items = data?.items?.map(i => new Item(i)) || [];
+    this.items = data?.items?.map(i => new Produto(i)) || [];
     this.facets = data?.facets?.map(f => new Facet(f)) || [];
     this.currentPage = data?.currentPage ?? 0;
     this.pageSize = data?.pageSize ?? 0;
@@ -16,7 +16,7 @@ export class SearchResponse {
   }
 }
 
-export class Item {
+export class Produto {
   id: string;
   nome: string;
   codigo_barras: string;
@@ -24,7 +24,7 @@ export class Item {
   preco: number;
   estoque: number;
 
-  constructor(data?: Partial<Item>) {
+  constructor(data?: Partial<Produto>) {
     this.id = data?.id ?? '';
     this.nome = data?.nome ?? '';
     this.codigo_barras = data?.codigo_barras ?? '';

@@ -3,11 +3,11 @@
 import React from 'react';
 import { ShoppingCart, ChevronDown } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { Item } from '@/types/Produto';
+import { Produto } from '@/types/Produto';
 import ProductImage from './ProductImage';
 
 interface ProductGridProps {
-  products: Item[];
+  products: Produto[];
   title: string;
   sliceInitial?: number;
   sliceEnd?: number;

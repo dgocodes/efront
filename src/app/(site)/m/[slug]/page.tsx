@@ -3,7 +3,7 @@
 import SearchFiltersSideBar from "@/components/filters/SearchFiltersSideBar";
 import BrandBanner from "@/components/brand/BrandBanner";
 import ProductGrid from "@/components/product/ProductGrid";
-import { getProdutos } from "@/lib/api";
+import { getProdutos } from "@/lib/produtos";
 
 export default async function MarcaPage({
     params,

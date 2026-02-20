@@ -1,7 +1,7 @@
 import SearchFiltersSideBar from "@/components/filters/SearchFiltersSideBar";
 import MobileFilters from "@/components/layout/MobileFilters";
 import ProductGrid from "@/components/product/ProductGrid";
-import { getProdutos } from "@/lib/api";
+import { getProdutos } from "@/lib/produtos";
 import Link from "next/link";
 export default async function CategoriaPage({
     params,
