@@ -1,4 +1,3 @@
-import React from 'react';
 import HeroCarousel from '@/components/layout/HeroCarousel';
 import { getHomeProducts } from '@/lib/api'; // Sua função que já tem o cache de 10min
 import ProductCarousel from '@/components/product/ProductHomeCarousel';

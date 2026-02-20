@@ -35,10 +35,7 @@ export default function BrandCarousel({ title }: { title?: string }) {
   return (
     <section className="py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Header com Título e Setas de Navegação */}
-
-        
+               
         <div className="flex items-center justify-between mb-10">
           <div className="flex items-center gap-3">
             {/* <span className="w-1.5 h-8 bg-blue-600 rounded-full"></span> */}
