@@ -4,7 +4,7 @@ import React, { useId, useEffect, useState } from 'react';
 import { ShoppingCart, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
-import { Produto } from '@/types/Produto';
+import { Produto } from "@/types/Produto";
 import ProductImage from './ProductImage';
 
 // Import essencial para evitar o layout quebrado no load

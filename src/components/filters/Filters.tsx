@@ -1,5 +1,5 @@
 // components/layout/SearchFilters.tsx
-import { Facet } from '@/types/Produto';
+import { Facet } from "@/types/Facet";
 
 interface SearchFiltersProps {
   facets: Facet[];

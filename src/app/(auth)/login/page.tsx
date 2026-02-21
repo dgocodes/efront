@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { authService } from "@/lib/auth"; // Importe o serviço padronizado
+import { authService } from "@/lib/authService"; // Importe o serviço padronizado
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");

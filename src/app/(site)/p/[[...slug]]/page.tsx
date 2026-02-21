@@ -1,9 +1,22 @@
-import { getProdutoById } from '@/lib/produtos';
+import { productService } from '@/lib/productService';
 import ProductTabs from '@/components/product/ProductTabs';
 import BrandCarousel from '@/components/brand/BrandCarousel';
 import ProductInfo from '@/components/product/ProductInfo';
 import ProductGallery from '@/components/product/ProductGallery';
 
+
+export async function generateMetadata(props: { params: Promise<{ slug: string[] }> }) {
+    const { slug } = await props.params;
+    const produto = await productService.getById(slug[0]);
+
+    if (!produto) return { title: 'Produto não encontrado' };
+
+    // Título mais chamativo para o Google
+    return {
+        title: `${produto.nome} - ${produto.marca || 'Sua Loja'}`,
+        description: produto.InfAdicionais?.substring(0, 160) || `Compre ${produto.nome} pelo melhor preço aqui.`,
+    };
+}
 
 export default async function ProductPage(props: {
     params: Promise<{ slug: string[] }>
@@ -21,7 +34,7 @@ export default async function ProductPage(props: {
 
     console.log('Buscando produto com slug:', slugs);
 
-    const produto = await getProdutoById(slugs[0]);
+    const produto = await productService.getById(slugs[0]);
 
     if (!produto) return (
         <div className="min-h-screen flex items-center justify-center">

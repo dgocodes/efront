@@ -1,65 +1,78 @@
 "use client";
 
-import React from "react";
-import { ShoppingCart } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useAuth } from "../../hooks/useAuth"; // Sem as chaves
-import { useCart } from "../../hooks/useCart";
-import { Produto } from "../../types/Produto";
+import React, { useState, useEffect } from "react";
+import { ShoppingBag, Check } from "lucide-react"; 
+import { useAuth } from "@/hooks/useAuth";
+import { useCart } from "@/hooks/useCart";
+import { Produto } from "@/types/Produto";
 
-
-
-
-interface AddToCartButtonProps {
-    product: Produto;
+interface AddToCartProps {
+  product: Produto;
+  isLarge?: boolean; 
 }
 
-export default function AddToCartButton({ product }: { product: Produto }) {
-  const router = useRouter();
-  
-  // 1. Chamada dos hooks (verifique se o caminho @/hooks/useAuth está correto)
-  const auth = useAuth();
-  const cart = useCart();
+export default function ProductViewAddToCart({ product, isLarge = false }: AddToCartProps) {
+  const { isAuthenticated, loading } = useAuth();
+  const { addToCart } = useCart();
+  const [mounted, setMounted] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
 
-  // 2. Garantia de que os valores existem para evitar erro de "undefined" no render
-  const isAuthenticated = auth?.isAuthenticated ?? false;
-  const addToCart = cart?.addToCart;
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
-  const handleAction = (e: React.MouseEvent) => {
+  useEffect(() => {
+    if (isAdded) {
+      const timer = setTimeout(() => setIsAdded(false), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [isAdded]);
+
+  if (!mounted || loading || !isAuthenticated) return null;
+
+  const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-
-    if (isAuthenticated && addToCart) {
-      addToCart({
-        skuId: product.id,
-        name: product.nome,
-        price: product.preco,
-      });
-    } else {
-      // Slugs amigáveis
-      const safeName = product.nome?.toLowerCase().replace(/\s+/g, "-") || "produto";
-      router.push(`/p/${product.id}/${safeName}`);
-    }
+    addToCart({
+      skuId: product.id,
+      name: product.nome,
+      price: product.preco,
+    });
+    setIsAdded(true);
   };
 
   return (
-    <button
-      type="button"
-      onClick={handleAction}
-      className={`mt-5 w-full h-11 rounded-xl flex items-center justify-center text-[11px] font-black uppercase transition-all duration-200 ${
-        isAuthenticated
-          ? "bg-gray-900 text-white hover:bg-blue-600 shadow-md active:scale-95"
-          : "bg-gray-100 text-gray-500 hover:bg-gray-200"
-      }`}
-    >
-      {isAuthenticated ? (
-        <div className="flex items-center">
-          <ShoppingCart size={14} className="mr-2" />
-          <span>Adicionar</span>
-        </div>
-      ) : (
-        <span>Ver Detalhes</span>
-      )}
-    </button>
+    <div className={`${isLarge ? "mt-8" : "mt-5"} w-full`}> 
+      {/* Container com margem superior para desgrudar do preço */}
+      
+      <button
+        onClick={handleAddToCart}
+        disabled={isAdded}
+        className={`
+          w-full flex items-center justify-center gap-2 transition-all duration-300
+          font-bold uppercase tracking-widest relative overflow-hidden
+          ${isLarge ? "h-14 rounded-xl text-xs" : "h-11 rounded-lg text-[10px]"}
+          ${isAdded 
+            ? "bg-emerald-600 text-white shadow-none" 
+            : "bg-slate-800 hover:bg-blue-700 text-white shadow-md active:scale-95"}
+        `}
+      >
+        {isAdded ? (
+          <>
+            <Check size={isLarge ? 18 : 14} strokeWidth={3} className="animate-in zoom-in" />
+            <span className="animate-in fade-in duration-300">
+              {isLarge ? "ADICIONADO AO CARRINHO" : "ADICIONADO!"}
+            </span>
+          </>
+        ) : (
+          <>
+            <ShoppingBag size={isLarge ? 18 : 14} strokeWidth={2.5} />
+            <span>
+              {isLarge ? "ADICIONAR AO CARRINHO" : "ADICIONAR"}
+            </span>
+          </>
+        )}
+      </button>
+    </div>
   );
 }

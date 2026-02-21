@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ChevronDown, X } from 'lucide-react'; // Adicionei o X
-import { Facet, FacetOption } from '@/types/Produto';
+import { FacetOption } from "@/types/FacetOption";
+import { Facet } from "@/types/Facet";
 
 interface Props {
   facets: Facet[];

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import {
   Menu,
   X,
@@ -16,8 +16,8 @@ import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
 import { useCart } from "@/hooks/useCart";
 import { usePathname } from "next/navigation";
+import { useUI } from "@/context/UIContext";
 
-// Importação Dinâmica: Isso isola o useSearchParams do Build
 const SearchForm = dynamic(() => import("./SearchForm"), {
   ssr: false,
   loading: () => (
@@ -46,15 +46,33 @@ export default function Navbar({
     string | null
   >(null);
 
-  const { user, isAuthenticated, logout } = useAuth();
-  const { items } = useCart(); // Pegando itens do carrinho para o badge
+  // ESTADO PARA HIDRATAÇÃO
+  const [mounted, setMounted] = useState(false);
 
-  // Ordenação das categorias
+  const { user, isAuthenticated, logout } = useAuth();
+  const { items } = useCart();
+  const { openCart } = useUI();
+  const pathname = usePathname();
+
+  // EFEITO PARA MARCAR COMO MONTADO
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const cartCount = useMemo(() => {
+    const actualItems = Array.isArray(items)
+      ? items
+      : (items as any)?.state?.items || [];
+
+    return actualItems.reduce((total: number, item: any) => {
+      const quantity = Number(item?.quantity) || 0;
+      return total + quantity;
+    }, 0);
+  }, [items]);
+
   const mainCategories = [...categoriesData]
     .sort((a, b) => a.ordem - b.ordem)
     .slice(0, 6);
-
-  const pathname = usePathname();
 
   if (!categoriesData || categoriesData.length === 0) return null;
 
@@ -119,15 +137,24 @@ export default function Navbar({
               )}
             </div>
 
-            {/* CARRINHO */}
-            <button className="relative p-2 hover:bg-gray-100 rounded-full text-gray-600 transition-all">
-              <ShoppingCart size={24} />
-              {items.length > 0 && (
-                <span className="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white animate-in zoom-in">
-                  {items.length}
-                </span>
-              )}
-            </button>
+            {/* CARRINHO (SÓ APARECE SE LOGADO E MONTADO) */}
+            {mounted && isAuthenticated && (
+              <button
+                onClick={openCart}
+                className="relative p-2 hover:bg-gray-100 rounded-full text-gray-600 transition-all active:scale-90 group"
+              >
+                <ShoppingCart
+                  size={24}
+                  className="group-hover:text-blue-600 transition-colors"
+                />
+
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white animate-in zoom-in duration-300">
+                    {cartCount}
+                  </span>
+                )}
+              </button>
+            )}
 
             {/* HAMBURGUER (MOBILE) */}
             <button
@@ -145,17 +172,15 @@ export default function Navbar({
         <SearchForm isMobile closeMenu={() => setIsMobileMenuOpen(false)} />
       </div>
 
-      {/* --- NAVEGAÇÃO DESKTOP & MEGA MENU --- */}
+      {/* NAVEGAÇÃO DESKTOP & MEGA MENU */}
       <nav className="hidden lg:block border-t border-gray-100 bg-white relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center">
-          {/* BOTÃO TODAS CATEGORIAS */}
           <div className="group static">
             <button className="flex items-center gap-3 px-6 py-4 bg-blue-600 text-white font-bold text-xs uppercase tracking-widest hover:bg-blue-700 transition-all">
               <Menu size={18} />
               Todas Categorias
             </button>
 
-            {/* Mega Menu Dropdown */}
             <div className="absolute top-full left-0 w-full hidden group-hover:block animate-in fade-in duration-200 z-[1000] h-[500px]">
               <div className="max-w-7xl mx-auto h-full flex border-x border-gray-100 bg-white shadow-2xl">
                 <div className="w-1/4 bg-gray-50 border-r border-gray-100 overflow-y-auto">
@@ -219,7 +244,6 @@ export default function Navbar({
             </div>
           </div>
 
-          {/* CATEGORIAS EM DESTAQUE */}
           <div className="flex items-center ml-2">
             {mainCategories.map((cat) => (
               <div key={cat.slug} className="group static">
@@ -270,13 +294,17 @@ export default function Navbar({
         </div>
       </nav>
 
-      {/* --- MENU LATERAL MOBILE --- */}
+      {/* MENU LATERAL MOBILE */}
       <div
-        className={`fixed inset-0 bg-black/50 z-[999] transition-opacity lg:hidden ${isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
+        className={`fixed inset-0 bg-black/50 z-[999] transition-opacity lg:hidden ${
+          isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
         onClick={() => setIsMobileMenuOpen(false)}
       />
       <aside
-        className={`fixed top-0 right-0 w-full max-w-xs h-full bg-white z-[1000] transform transition-transform duration-300 lg:hidden overflow-y-auto ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed top-0 right-0 w-full max-w-xs h-full bg-white z-[1000] transform transition-transform duration-300 lg:hidden overflow-y-auto ${
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         <div className="p-6 border-b flex justify-between items-center bg-gray-50">
           <span className="text-xl font-black text-blue-600">MENU</span>
@@ -293,7 +321,11 @@ export default function Navbar({
                     activeMobileCategory === cat.slug ? null : cat.slug,
                   )
                 }
-                className={`flex items-center justify-between w-full p-4 rounded-xl transition-all ${activeMobileCategory === cat.slug ? "bg-blue-50 text-blue-700" : "text-gray-700"}`}
+                className={`flex items-center justify-between w-full p-4 rounded-xl transition-all ${
+                  activeMobileCategory === cat.slug
+                    ? "bg-blue-50 text-blue-700"
+                    : "text-gray-700"
+                }`}
               >
                 <div className="flex items-center gap-3 font-bold text-sm">
                   <DynamicIcon name={cat.icon} size={20} />

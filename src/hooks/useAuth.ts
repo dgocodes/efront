@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import { cartService } from '@/lib/cart';
+import { cartService } from '@/lib/cartService';
 
-// 1. Definição da Interface do Usuário
 export interface AuthUser {
   name: string;
   type: string;
@@ -10,14 +9,16 @@ export interface AuthUser {
   initials: string;
 }
 
-
 export function useAuth() {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+
+    // Evita execução no server-side
+    if (typeof window === 'undefined') return;
+
     const loadUserAndSync = async () => {
-      // Lemos os cookies configurados pelo C#
       const userType = Cookies.get('userType');
       const userName = Cookies.get('username');
       const erpId = Cookies.get('erpId');
@@ -33,19 +34,20 @@ export function useAuth() {
           initials: name.substring(0, 1).toUpperCase()
         });
 
-        // --- LÓGICA DE SINCRONIZAÇÃO DO CARRINHO ---
+        // --- LÓGICA DE SINCRONIZAÇÃO REFATORADA ---
         try {
           const localCartRaw = localStorage.getItem('cart-storage');
 
           if (localCartRaw) {
             const parsedCart = JSON.parse(localCartRaw);
-
-            // Tenta pegar os itens (ajustado para suportar array puro ou Zustand persist)
+            // Suporta Zustand persist ou Array puro
             const items = parsedCart.state?.items || (Array.isArray(parsedCart) ? parsedCart : null);
 
+            // Verificamos o token aqui apenas para garantir que a API não retorne 401 à toa
             if (items && items.length > 0 && token) {
-              await cartService.syncCart(items, token);
-              // Limpa o storage após o sucesso para evitar loops de sincronização
+              // ✅ Chamada limpa: o service usa a api.ts que já tem o token
+              await cartService.syncCart(items);
+
               localStorage.removeItem('cart-storage');
               console.log("🛒 Carrinho sincronizado com sucesso!");
             }
@@ -64,17 +66,12 @@ export function useAuth() {
     loadUserAndSync();
   }, []);
 
-  // Função para Logout
   const logout = () => {
-    // 1. Define quais caminhos EXIGEM login (ex: painel administrativo)
     const rotasRestritas = ['/admin', '/dashboard', '/minha-conta', '/checkout'];
-
-    // 2. Verifica se a página onde ele está agora é uma dessas rotas
     const estaEmRotaRestrita = rotasRestritas.some(rota =>
       window.location.pathname.startsWith(rota)
     );
 
-    // 3. Limpa todos os cookies
     const options = { path: '/' };
     Cookies.remove('token', options);
     Cookies.remove('refreshToken', options);
@@ -84,13 +81,9 @@ export function useAuth() {
 
     setUser(null);
 
-    // 4. Decisão de redirecionamento
     if (estaEmRotaRestrita) {
-      // Se ele deslogou dentro do painel, ele TEM que ir para o login
       window.location.href = '/login';
     } else {
-      // Se ele está na home ou vendo um produto, apenas recarrega a página
-      // Isso vai esconder os preços e mudar a Navbar para "Minha Conta"
       window.location.reload();
     }
   };

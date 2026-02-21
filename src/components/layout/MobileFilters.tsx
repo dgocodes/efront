@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Filter } from "lucide-react";
-import { Facet } from "@/types/Produto";
+import { Facet } from "@/types/Facet";
 import SearchFiltersSideBar from "../filters/SearchFiltersSideBar";
 
 interface Props {

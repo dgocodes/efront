@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { Search, Loader2, X, Plus, Edit, Trash2 } from "lucide-react";
-import { EUserType, RegisterUserCommand, usuarioService } from "@/lib/usuario";
+import { EUserType, RegisterUserCommand, userService } from "@/lib/usuario";
 
 export default function UsuariosPage() {
   const [usuarios, setUsuarios] = useState([]);
@@ -24,7 +24,7 @@ export default function UsuariosPage() {
   const fetchUsuarios = useCallback(async () => {
     setLoading(true);
     try {
-      const data = await usuarioService.getAll({ search, page, pageSize: 3 });
+      const data = await userService.getAll({ search, page, pageSize: 3 });
       setUsuarios(data.items || []);
       setTotalPages(data.totalPages || 1);
     } catch (error) {
@@ -44,7 +44,7 @@ export default function UsuariosPage() {
   async function handleCreateUser(e: React.FormEvent) {
     e.preventDefault();
     try {
-      await usuarioService.create(novoUsuario);
+      await userService.create(novoUsuario);
       setIsModalOpen(false);
       setNovoUsuario({
         email: "",
@@ -62,7 +62,7 @@ export default function UsuariosPage() {
   async function handleDeleteUser(id: string) {
     if (!confirm("Tem certeza que deseja excluir este usuário?")) return;
     try {
-      await usuarioService.delete(id);
+      await userService.delete(id);
       fetchUsuarios();
     } catch (error) {
       alert("Erro ao deletar usuário");

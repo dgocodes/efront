@@ -1,96 +1,104 @@
-// app/marca/[slug]/page.tsx
-
 import SearchFiltersSideBar from "@/components/filters/SearchFiltersSideBar";
 import BrandBanner from "@/components/brand/BrandBanner";
 import ProductGrid from "@/components/product/ProductGrid";
-import { getProdutos } from "@/lib/produtos";
+import { productService } from "@/lib/productService";
+import Link from "next/link";
 
 export default async function MarcaPage({
-    params,
-    searchParams
+  params,
+  searchParams,
 }: {
-    params: Promise<{ slug: string }>,
-    searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-    // 1. RESOLVENDO AS PROMISES
-    const { slug: marcaNome } = await params;
-    const resolvedSearchParams = await searchParams;
+  const { slug: marcaNome } = await params;
+  const resolvedSearchParams = await searchParams;
 
-    // 2. TRATANDO OS FILTROS DA URL (Lógica do underline _)
-    const filtersRaw = resolvedSearchParams.filters;
-    
-    // Se filtersRaw for string "foroni_caderno", vira ["foroni", "caderno"]
-    // Se for undefined, vira []
-    const activeFilters = typeof filtersRaw === 'string' 
-        ? filtersRaw.split('_') 
-        : [];
+  const filtersRaw = resolvedSearchParams.filters;
+  const activeFilters =
+    typeof filtersRaw === "string" ? filtersRaw.split("_") : [];
+  const currentSort = (resolvedSearchParams.sort as string) || "mais-vendidos";
+  const currentPage = Number(resolvedSearchParams.page) || 1;
+  const pageSize = 40;
 
-    const currentSort = (resolvedSearchParams.sort as string) || 'mais-vendidos';
-    const currentPage = Number(resolvedSearchParams.page) || 1;
-    const pageSize = 40;
+  const response = await productService.getProdutos({
+    page: currentPage,
+    limit: pageSize,
+    sort: currentSort,
+    filters: typeof filtersRaw === "string" ? filtersRaw : undefined,
+    slug: marcaNome,
+  });
 
-    // 3. CHAMADA À API
-    // Passamos a string bruta de filtros para o service, que já sabe lidar com o split
-    const response = await getProdutos({
-        page: currentPage,
-        limit: pageSize,
-        sort: currentSort,
-        filters: typeof filtersRaw === 'string' ? filtersRaw : undefined // Passa a string pro service
-    });
+  const plainProducts = JSON.parse(JSON.stringify(response.items || []));
+  const plainFacets = JSON.parse(JSON.stringify(response.facets || []));
 
-    // 4. LIMPANDO OS DADOS (Plain Objects)
-    // Dica: Se os dados vêm de um banco/API padrão, o JSON.parse/stringify resolve, 
-    // mas certifique-se que o SearchResponse não tenha métodos de classe (functions) que se percam.
-    const plainProducts = JSON.parse(JSON.stringify(response.items || []));
-    const plainFacets = JSON.parse(JSON.stringify(response.facets || []));
+  // Remove a faceta da própria marca
+  const plainFacetsWithoutMarca = plainFacets.filter(
+    (item: any) => item.facet.toLowerCase() !== "marca",
+  );
 
-    // Remove a faceta da própria marca, já que o usuário já está na página da marca
-    const plainFacetsWithoutMarca = plainFacets.filter(
-        (item: any) => item.facet.toLowerCase() !== 'marca'
-    );
+  const totalPages = Math.ceil(response.totalCount / pageSize);
 
-    // Cálculo para a paginação
-    const totalPages = Math.ceil(response.totalCount / pageSize);
+  return (
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* 1. BREADCRUMB - Importante para navegação e SEO */}
+      <nav className="text-[10px] text-gray-400 uppercase font-bold tracking-widest mb-6 flex items-center gap-2">
+        <Link href="/" className="hover:text-blue-600 transition-colors">
+          Home
+        </Link>
+        <span className="text-gray-300 font-light">/</span>
+        <span className="text-gray-900">{marcaNome.replace(/-/g, " ")}</span>
+      </nav>
 
-    return (
-        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <BrandBanner slug={marcaNome} />
+      {/* 2. BANNER OU TÍTULO H1 */}
+      <div className="mb-12">
+        <BrandBanner slug={marcaNome} />
 
-            <div className="flex flex-col lg:flex-row gap-8">
-                {/* SIDEBAR DE FILTROS */}
-                <div className="w-full lg:w-64 flex-shrink-0">
-                    <SearchFiltersSideBar
-                        facets={plainFacetsWithoutMarca ?? []}
-                        activeFilters={activeFilters} // Agora passa o array limpo [ "foroni", "10-materias" ]
-                    />
-                </div>
+        {/* O H1: Se o BrandBanner não tiver um H1 interno, coloque aqui */}
+        <div className="mt-8 space-y-2">
+          <h1 className="text-2xl md:text-3xl font-bold text-slate-800 tracking-tight mb-6 uppercase">
+            {marcaNome.replace(/-/g, " ")}
+          </h1>
+          <p className="text-gray-500 text-sm font-medium">
+            Explore a linha completa de produtos {marcaNome.replace(/-/g, " ")}
+          </p>
+        </div>
+      </div>
 
-                {/* GRID DE PRODUTOS */}
-                <div className="flex-1">
-                    <ProductGrid
-                        products={plainProducts}
-                        title={marcaNome}
-                        sliceInitial={0}
-                        sliceEnd={pageSize}
-                        enabletitle={false}
-                        showTotal={true}
-                        totalItems={response.totalCount}
-                        showSort={true}
-                    />
+      <div className="flex flex-col lg:flex-row gap-8">
+        {/* 3. SIDEBAR FIXA */}
+        <aside className="hidden lg:block w-64 flex-shrink-0">
+          <div className="sticky top-28">
+            <SearchFiltersSideBar
+              facets={plainFacetsWithoutMarca}
+              activeFilters={activeFilters}
+            />
+          </div>
+        </aside>
 
-                    {/* PAGINAÇÃO */}
-                    {totalPages > 1 && (
-                        <div className="mt-12 flex justify-center">
-                            <div className="flex flex-col items-center gap-2">
-                                <p className="text-gray-400 text-[10px] uppercase font-black tracking-[0.2em]">
-                                    Página {currentPage} de {totalPages}
-                                </p>
-                                {/* Aqui você pode inserir seu <Pagination /> component futuramente */}
-                            </div>
-                        </div>
-                    )}
-                </div>
+        {/* 4. GRID DE PRODUTOS */}
+        <section className="flex-1 min-w-0">
+          <ProductGrid
+            products={plainProducts}
+            sliceEnd={20}
+            totalItems={response.totalCount}
+            showSort={true}
+            showTotal={true}
+            enabletitle={false} // H1 já está no topo
+            title={""}
+          />
+
+          {/* PAGINAÇÃO */}
+          {totalPages > 1 && (
+            <div className="mt-16 flex flex-col items-center border-t border-gray-100 pt-10">
+              <p className="text-gray-400 text-[10px] uppercase font-black tracking-[0.2em] mb-4">
+                Página {currentPage} de {totalPages}
+              </p>
+              {/* Componente de paginação aqui */}
             </div>
-        </main>
-    );
+          )}
+        </section>
+      </div>
+    </main>
+  );
 }

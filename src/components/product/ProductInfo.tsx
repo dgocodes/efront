@@ -1,58 +1,68 @@
 // components/product/ProductInfo.tsx
-import { Produto } from '@/types/Produto';
-import { ShoppingCart, Truck, ShieldCheck } from 'lucide-react';
+import { Produto } from "@/types/Produto";
+import ProductViewPrice from "./ProductViewPrice";
+import ProductViewAddToCart from "./ProductViewAddToCart";
 
 export default function ProductInfo({ product }: { product: Produto }) {
-    return (
-        <div className="flex flex-col">
-            {/* Marca e Título */}
-            <span className="text-blue-600 text-xs font-black uppercase tracking-widest mb-2">
-                {product.marca}
-            </span>
-            <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tighter mb-4 leading-none">
-                {product.nome}
-            </h1>
+  return (
+    <div className="flex flex-col">
+      {/* Marca com tipografia refinada */}
+      <span className="text-blue-600 font-bold text-xs md:text-sm uppercase tracking-[0.2em] mb-3">
+        {product.marca || "Original"}
+      </span>
 
-            {/* Avaliações Simples */}
-            <div className="flex items-center gap-2 mb-6 text-sm text-gray-500">
-                <div className="flex text-yellow-400">★★★★★</div>
-                <span>(4.8 de 5)</span>
-            </div>
+      {/* Título: Reduzi de font-black para font-bold para evitar o aspecto "borrado" */}
+      <h1 className="text-2xl md:text-4xl font-bold text-gray-900 mb-6 leading-tight tracking-tight">
+        {product.nome}
+      </h1>
 
-            {/* Preços */}
-            <div className="bg-gray-50 p-6 rounded-3xl mb-8">
-                <span className="text-gray-400 line-through text-sm">De: R$ {product.preco}</span>
-                <div className="flex items-baseline gap-2">
-                    <span className="text-xs font-bold text-gray-900">R$</span>
-                    <span className="text-4xl font-black text-gray-900 tracking-tighter">
-                        {product.preco}
-                    </span>
-                </div>
-                <p className="text-green-600 text-sm font-bold mt-1">
-                    No PIX com 10% de desconto
-                </p>
-                <p className="text-gray-500 text-xs mt-1">
-                    Ou em até 10x de R$ {(product.preco / 10).toFixed(2)} sem juros
-                </p>
-            </div>
-
-            {/* Botão de Compra */}
-            <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-black py-5 rounded-2xl flex items-center justify-center gap-3 transition-all transform hover:scale-[1.02] active:scale-95 shadow-xl shadow-blue-100 mb-6">
-                <ShoppingCart size={24} />
-                ADICIONAR AO CARRINHO
-            </button>
-
-            {/* Benefícios Rápidos */}
-            <div className="grid grid-cols-1 gap-4 border-t border-gray-100 pt-6">
-                <div className="flex items-center gap-3 text-sm text-gray-600">
-                    <Truck size={18} className="text-blue-600" />
-                    <span>Frete grátis para todo o Brasil</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm text-gray-600">
-                    <ShieldCheck size={18} className="text-blue-600" />
-                    <span>Garantia oficial de 12 meses</span>
-                </div>
-            </div>
+      <div className="mb-8 pb-8 border-b border-gray-100">
+        {/* Preço: O componente já cuida do Hydration e Login */}
+        <div className="scale-125 origin-left">
+          <ProductViewPrice preco={product.preco} />
         </div>
-    );
+
+        <div className="mt-6 flex items-center gap-4">
+          <span className="bg-gray-100 text-gray-600 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">
+            SKU: {product.id}
+          </span>
+          <span className="text-green-600 text-[10px] font-bold uppercase tracking-wider">
+            ● Em estoque
+          </span>
+        </div>
+      </div>
+
+      {/* Seção de Compra */}
+      <div className="space-y-6">
+
+        <div className="w-full mt-8">
+          <ProductViewAddToCart product={product} isLarge={true} />
+        </div>
+
+        {/* Benefícios de compra */}
+        <div className="grid grid-cols-1 gap-3">
+          <div className="flex items-center gap-3 text-gray-500">
+            <div className="h-8 w-8 rounded-full bg-blue-50 flex items-center justify-center">
+              <svg
+                className="w-4 h-4 text-blue-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </div>
+            <p className="text-xs font-medium uppercase tracking-tighter">
+              Compra 100% Segura
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

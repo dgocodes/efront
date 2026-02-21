@@ -9,12 +9,18 @@ export const metadata = {
   description: "Loja de variedades",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="pt-br">
       {/* Aqui as classes devem bater EXATAMENTE com o que o navegador espera */}
-      <body className={`${inter.className} bg-gray-50 text-gray-900 antialiased`}>
-        {children}
+      <body
+        className={`${inter.className} bg-gray-50 text-gray-900 antialiased`}
+      >
+        <div className="min-h-screen">{children}</div>
       </body>
     </html>
   );

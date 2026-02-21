@@ -1,5 +1,5 @@
 import HeroCarousel from '@/components/layout/HeroCarousel';
-import { getHomeProducts } from '@/lib/produtos'; // Sua função que já tem o cache de 10min
+import { productService } from '@/lib/productService'; // Sua função que já tem o cache de 10min
 import ProductCarousel from '@/components/product/ProductHomeCarousel';
 import ProductGrid from '@/components/product/ProductGrid';
 import BrandCarousel from '@/components/brand/BrandCarousel';
@@ -7,9 +7,8 @@ import BrandCarousel from '@/components/brand/BrandCarousel';
 export default async function HomePage() {
   // 1. Busca os dados diretamente no servidor (Server Component)
   // O Next.js vai cachear isso conforme o revalidate: 600 que você definiu na api.ts
-  const destaquesResult = await getHomeProducts();
-  const tilibraResult = await getHomeProducts(undefined, undefined, ['tilibra']);
-
+  const destaquesResult = await productService.getHomeProducts();
+  const tilibraResult = await productService.getProdutosPorTag('tilibra');
   return (
     <main className="min-h-screen bg-gray-50">
       <HeroCarousel />

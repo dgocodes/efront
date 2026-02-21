@@ -170,6 +170,7 @@ import { useCart } from "@/hooks/useCart";
 import { useAuth } from "@/hooks/useAuth";
 import ProductViewPrice from "./ProductViewPrice";
 import ProductViewAddToCart from "./ProductViewAddToCart";
+import Link from "next/link";
 
 interface ProductGridProps {
   products: Produto[];
@@ -259,66 +260,58 @@ export default function ProductGrid({
 
       {/* --- GRID DE PRODUTOS --- */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-        {products.slice(sliceInitial, sliceEnd).map((product) => (
-          <div
-            key={product.id}
-            className="group bg-white rounded-2xl border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 flex flex-col h-full"
-          >
-            {/* Container da Imagem */}
-            <div className="relative w-full h-40 md:h-48 bg-gray-50 rounded-xl mb-4 overflow-hidden flex items-center justify-center">
-              <ProductImage productId={product.id} alt={product.nome} />
+        {products.slice(sliceInitial, sliceEnd).map((product) => {
+          const safeName =
+            product.nome
+              ?.toLowerCase()
+              .normalize("NFD")
+              .replace(/[\u0300-\u036f]/g, "")
+              .replace(/[^\w\s-]/g, "")
+              .replace(/\s+/g, "-") || "produto";
 
-              {/* Badge Opcional (Marca) */}
-              <div className="absolute top-2 left-2">
-                <span className="text-[9px] font-black bg-white/90 backdrop-blur-sm text-gray-500 px-2 py-1 rounded shadow-sm uppercase">
-                  {product.marca || "Original"}
-                </span>
-              </div>
-            </div>
+          const productHref = `/p/${product.id}/${safeName}`;
 
-            {/* Informações do Produto */}
-            <div className="flex-1 flex flex-col">
-              <h3 className="text-[13px] font-bold text-gray-700 line-clamp-2 leading-tight mb-3 group-hover:text-blue-600 transition-colors">
-                {product.nome}
-              </h3>
-
-              <div className="mt-auto">
-                <ProductViewPrice preco={product.preco} />
-              </div>
-            </div>
-
-            {/* Botão de Ação - Mantém a estrutura do grid intacta */}
-            {/* <button
-              onClick={() => {
-                if (isAuthenticated) {
-                  addToCart({
-                    skuId: product.id,
-                    name: product.nome,
-                    price: product.preco,
-                  });
-                } else {
-                  router.push("/p/" + product.id + "/" + product.nome); // Redireciona para a página do produto para ver detalhes e preços
-                }
-              }}
-              className={`mt-5 w-full h-11 rounded-xl flex items-center justify-center text-[11px] font-black uppercase transition-all duration-200 ${
-                isAuthenticated 
-                  ? "bg-gray-900 text-white hover:bg-blue-600 shadow-md active:scale-95" 
-                  : "bg-gray-100 text-gray-500 hover:bg-gray-200"
-              }`}
+          return (
+            <div
+              key={product.id}
+              className="group bg-white rounded-2xl border border-gray-100 p-4 hover:shadow-xl transition-all duration-300 flex flex-col h-full"
             >
-              {isAuthenticated ? (
-                <>
-                  <ShoppingCart size={14} className="mr-2" />
-                  Adicionar
-                </>
-              ) : (
-                "Ver Detalhes"
-              )}
-            </button> */}
+              {/* Usando o Link do Next.js (importado corretamente agora) */}
+              <Link
+                href={productHref}
+                className="relative w-full h-40 md:h-48 bg-gray-50 rounded-xl mb-4 overflow-hidden flex items-center justify-center cursor-pointer"
+              >
+                <ProductImage productId={product.id} alt={product.nome} />
 
-            <ProductViewAddToCart product={product} />
-          </div>
-        ))}
+                <div className="absolute top-2 left-2">
+                  <span className="text-[9px] font-black bg-white/90 backdrop-blur-sm text-gray-500 px-2 py-1 rounded shadow-sm uppercase">
+                    {product.marca || "Original"}
+                  </span>
+                </div>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors duration-300" />
+              </Link>
+
+              <div className="flex-1 flex flex-col">
+                <Link
+                  href={productHref}
+                  className="block group-hover:text-blue-600 transition-colors"
+                >
+                  <h3 className="text-[13px] font-bold text-gray-700 line-clamp-2 leading-tight mb-3 min-h-[32px]">
+                    {product.nome}
+                  </h3>
+                </Link>
+
+                <div className="mt-auto">
+                  {/* O ProductViewPrice deve ter o "if (!mounted) return null" que fizemos */}
+                  <ProductViewPrice preco={product.preco} />
+                </div>
+              </div>
+
+              {/* O botão fica FORA de qualquer link para não dar erro de nesting */}
+              <ProductViewAddToCart product={product} />
+            </div>
+          );
+        })}
       </div>
     </section>
   );

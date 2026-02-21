@@ -1,54 +1,64 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import ProductImage from './ProductImage'; // Importe seu componente aqui
+import ProductImage from './ProductImage';
 
 interface ProductGalleryProps {
-    productId: string; // Precisamos do ID para o seu componente funcionar
+    productId: string;
     alt: string;
-    // Caso você tenha ids de variações (ex: 123_1, 123_2), pode passar um array
     additionalImages?: string[]; 
 }
 
 export default function ProductGallery({ productId, alt, additionalImages = [] }: ProductGalleryProps) {
-    // 1. Criamos a lista de IDs de imagem (o principal + adicionais)
     const allImageIds = [productId, ...additionalImages];
-
-    console.log('IDs de Imagem para a Galeria:', allImageIds); // Debug: Verifique os IDs que estão sendo usados
-    console.log('Produto ID:', productId); // Debug: Verifique o ID principal do produto
     
-    // 2. Estado para controlar qual ID de imagem está em destaque
     const [activeImageId, setActiveImageId] = useState(productId);
+    const [mounted, setMounted] = useState(false);
 
-    // Sincroniza se o produto mudar
+    // 1. Proteção de Hydration: Garante que o estado inicial coincida com o servidor
     useEffect(() => {
+        setMounted(true);
         setActiveImageId(productId);
     }, [productId]);
+
+    // Enquanto não monta, renderizamos um esqueleto (ou apenas a imagem principal sem interatividade)
+    if (!mounted) {
+        return (
+            <div className="flex flex-col md:flex-row-reverse gap-4 animate-pulse">
+                <div className="flex-1 aspect-square bg-gray-50 rounded-3xl border border-gray-100" />
+            </div>
+        );
+    }
 
     return (
         <div className="flex flex-col md:flex-row-reverse gap-4">
             {/* BOX DA IMAGEM PRINCIPAL */}
             <div className="flex-1 relative aspect-square bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-sm group">
+                {/* O componente ProductImage já tem o tratamento de erro e loading que fizemos */}
                 <ProductImage 
                     productId={activeImageId} 
                     alt={alt} 
                 />
             </div>
 
-            {/* LISTA DE MINIATURAS (Só aparece se houver mais de uma imagem) */}
+            {/* LISTA DE MINIATURAS */}
             {allImageIds.length > 1 && (
-                <div className="flex md:flex-col gap-3 overflow-x-auto md:overflow-y-auto pb-2 md:pb-0 scrollbar-hide">
+                <div className="flex md:flex-col gap-3 overflow-x-auto md:overflow-y-auto pb-2 md:pb-0 scrollbar-hide max-h-[500px]">
                     {allImageIds.map((id, idx) => (
                         <button
-                            key={idx}
+                            key={`${id}-${idx}`}
                             onMouseEnter={() => setActiveImageId(id)}
                             onClick={() => setActiveImageId(id)}
-                            className={`relative flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-xl border-2 transition-all overflow-hidden bg-white ${
-                                activeImageId === id ? 'border-blue-600 shadow-md' : 'border-gray-100 hover:border-blue-200'
+                            className={`relative flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-xl border-2 transition-all duration-300 overflow-hidden bg-white shadow-sm ${
+                                activeImageId === id 
+                                    ? 'border-blue-600 ring-2 ring-blue-50' 
+                                    : 'border-transparent hover:border-blue-200 opacity-70 hover:opacity-100'
                             }`}
                         >
-                            {/* Reutilizamos seu componente nas miniaturas também! */}
-                            <ProductImage productId={id} alt={`Miniatura ${idx}`} />
+                            {/* Miniaturas com preenchimento ajustado */}
+                            <div className="w-full h-full p-1">
+                                <ProductImage productId={id} alt={`Miniatura ${idx}`} />
+                            </div>
                         </button>
                     ))}
                 </div>
