@@ -22,6 +22,7 @@ export interface RegisterUserCommand {
   nome: string;
   erpId: string;
   tipo: EUserType;
+  sessionActive?: boolean; // Opcional para controle de sessão
 }
 
 export const usuarioService = {

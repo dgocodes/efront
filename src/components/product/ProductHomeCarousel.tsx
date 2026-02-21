@@ -9,6 +9,8 @@ import ProductImage from './ProductImage';
 
 // Import essencial para evitar o layout quebrado no load
 import 'swiper/css';
+import ProductViewPrice from './ProductViewPrice';
+import ProductViewAddToCart from './ProductViewAddToCart';
 
 interface ProductCarouselProps {
   products: Produto[];
@@ -84,17 +86,15 @@ export default function ProductCarousel({ products, title }: ProductCarouselProp
                     {product.nome}
                   </h3>
                   <div className="flex items-baseline gap-1 mt-auto">
-                    <span className="text-xs font-bold text-blue-600">R$</span>
+                    {/* <span className="text-xs font-bold text-blue-600">R$</span>
                     <span className="text-xl font-black text-blue-600">
                       {Number(product.preco).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-                    </span>
+                    </span> */}
+                    <ProductViewPrice preco={product.preco}  />
                   </div>
                 </div>
 
-                <button className="mt-4 w-full h-10 bg-[#0f172a] text-white rounded-lg flex items-center justify-center text-[11px] font-bold uppercase tracking-wider hover:bg-blue-600 transition-all">
-                  <ShoppingCart size={14} className="mr-2" />
-                  Adicionar
-                </button>
+                <ProductViewAddToCart product={product} />
               </div>
             </SwiperSlide>
           ))}

@@ -8,10 +8,14 @@ import {
   ChevronRight,
   ShoppingCart,
   User,
+  LogOut,
 } from "lucide-react";
 import dynamic from "next/dynamic";
 import DynamicIcon from "./DynamicIcon";
 import Link from "next/link";
+import { useAuth } from "@/hooks/useAuth";
+import { useCart } from "@/hooks/useCart";
+import { usePathname } from "next/navigation";
 
 // Importação Dinâmica: Isso isola o useSearchParams do Build
 const SearchForm = dynamic(() => import("./SearchForm"), {
@@ -42,10 +46,15 @@ export default function Navbar({
     string | null
   >(null);
 
+  const { user, isAuthenticated, logout } = useAuth();
+  const { items } = useCart(); // Pegando itens do carrinho para o badge
+
   // Ordenação das categorias
   const mainCategories = [...categoriesData]
     .sort((a, b) => a.ordem - b.ordem)
     .slice(0, 6);
+
+  const pathname = usePathname();
 
   if (!categoriesData || categoriesData.length === 0) return null;
 
@@ -53,40 +62,77 @@ export default function Navbar({
     <header className="bg-white border-b border-gray-200 sticky top-0 z-[999] w-full shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-30 bg-white">
         <div className="flex justify-between items-center h-16 lg:h-20 gap-4">
+          {/* LOGO */}
           <div className="flex-shrink-0">
-            <a
+            <Link
               href="/"
-              className="text-xl md:text-2xl font-black text-blue-600 uppercase"
+              className="text-xl md:text-2xl font-black text-blue-600 uppercase tracking-tighter"
             >
               Ecommerce
-            </a>
+            </Link>
           </div>
 
-          {/* Busca Desktop - Agora usando o componente dinâmico */}
+          {/* BUSCA DESKTOP */}
           <div className="hidden md:flex flex-1 max-w-xl">
             <SearchForm />
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-5 text-gray-600">
-            {/* Trocamos o button por Link e adicionamos o href */}
-            <Link
-              href="/login"
-              className="hidden sm:flex items-center gap-2 hover:text-blue-600 cursor-pointer"
-            >
-              <User size={20} />
-              <div className="flex flex-col items-start leading-none text-left text-xs font-bold">
-                <span className="text-[10px] text-gray-400">Entrar</span>
-                Minha Conta
-              </div>
-            </Link>
+          {/* AÇÕES DA DIREITA */}
+          <div className="flex items-center gap-3 sm:gap-6">
+            {/* PERFIL DO USUÁRIO */}
+            <div className="flex items-center">
+              {isAuthenticated ? (
+                <div className="flex items-center gap-3 border-r pr-4 border-gray-100">
+                  <div className="hidden sm:flex flex-col text-right leading-tight">
+                    <span className="text-[11px] font-bold text-gray-900 truncate max-w-[120px]">
+                      {user?.name}
+                    </span>
+                    <span className="text-[9px] text-blue-600 font-black uppercase tracking-tighter">
+                      {user?.type}
+                    </span>
+                  </div>
+                  <button
+                    onClick={logout}
+                    className="p-2 text-gray-400 hover:text-red-500 transition-colors"
+                    title="Sair"
+                  >
+                    <LogOut size={18} />
+                  </button>
+                </div>
+              ) : (
+                <Link
+                  href={`/login?callbackUrl=${encodeURIComponent(pathname)}`}
+                  className="flex items-center gap-2 hover:text-blue-600 transition-colors group"
+                >
+                  <div className="p-2 bg-gray-50 rounded-full text-gray-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-all">
+                    <User size={20} />
+                  </div>
+                  <div className="hidden sm:flex flex-col items-start leading-none text-left">
+                    <span className="text-[10px] text-gray-400 font-bold uppercase">
+                      Entrar
+                    </span>
+                    <span className="text-xs font-black text-gray-700">
+                      Minha Conta
+                    </span>
+                  </div>
+                </Link>
+              )}
+            </div>
 
-            <button className="relative p-2 hover:bg-gray-100 rounded-full">
+            {/* CARRINHO */}
+            <button className="relative p-2 hover:bg-gray-100 rounded-full text-gray-600 transition-all">
               <ShoppingCart size={24} />
+              {items.length > 0 && (
+                <span className="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-black w-5 h-5 rounded-full flex items-center justify-center border-2 border-white animate-in zoom-in">
+                  {items.length}
+                </span>
+              )}
             </button>
 
+            {/* HAMBURGUER (MOBILE) */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-gray-600"
+              className="lg:hidden p-2 text-gray-600 hover:bg-gray-100 rounded-full transition-all"
             >
               {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -94,7 +140,7 @@ export default function Navbar({
         </div>
       </div>
 
-      {/* Busca Mobile - Agora usando o componente dinâmico */}
+      {/* BUSCA MOBILE */}
       <div className="md:hidden px-4 pb-4 relative z-20 bg-white">
         <SearchForm isMobile closeMenu={() => setIsMobileMenuOpen(false)} />
       </div>
@@ -109,6 +155,7 @@ export default function Navbar({
               Todas Categorias
             </button>
 
+            {/* Mega Menu Dropdown */}
             <div className="absolute top-full left-0 w-full hidden group-hover:block animate-in fade-in duration-200 z-[1000] h-[500px]">
               <div className="max-w-7xl mx-auto h-full flex border-x border-gray-100 bg-white shadow-2xl">
                 <div className="w-1/4 bg-gray-50 border-r border-gray-100 overflow-y-auto">
@@ -116,7 +163,11 @@ export default function Navbar({
                     <div
                       key={cat.slug}
                       onMouseEnter={() => setActiveTab(cat.slug)}
-                      className={`flex items-center justify-between px-6 py-3.5 cursor-pointer transition-colors ${activeTab === cat.slug ? "bg-white text-blue-600 border-l-4 border-blue-600 font-bold" : "text-gray-600 hover:bg-gray-100"}`}
+                      className={`flex items-center justify-between px-6 py-3.5 cursor-pointer transition-colors ${
+                        activeTab === cat.slug
+                          ? "bg-white text-blue-600 border-l-4 border-blue-600 font-bold"
+                          : "text-gray-600 hover:bg-gray-100"
+                      }`}
                     >
                       <div className="flex items-center gap-3 text-sm">
                         <DynamicIcon name={cat.icon} size={18} />
@@ -151,14 +202,14 @@ export default function Navbar({
                       </div>
                       <div className="grid grid-cols-3 gap-x-8 gap-y-1">
                         {cat.children?.map((sub) => (
-                          <a
+                          <Link
                             key={sub.slug}
                             href={`/c/${cat.slug}/${sub.slug}`}
                             className="text-gray-500 hover:text-blue-600 text-[13px] py-1 flex items-center gap-2 transition-all"
                           >
                             <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
                             {sub.label}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -191,23 +242,23 @@ export default function Navbar({
                         <h3 className="text-xl font-black text-gray-900 mb-1">
                           {cat.label}
                         </h3>
-                        <a
+                        <Link
                           href={`/c/${cat.slug}`}
-                          className="mt-4 w-full bg-blue-600 text-white text-[10px] uppercase tracking-widest font-bold py-3 rounded-xl hover:bg-blue-700 transition-all"
+                          className="mt-4 w-full bg-blue-600 text-white text-[10px] uppercase tracking-widest font-bold py-3 rounded-xl hover:bg-blue-700 transition-all text-center"
                         >
                           Ver Tudo
-                        </a>
+                        </Link>
                       </div>
                       <div className="flex-1 grid grid-cols-4 gap-x-6 gap-y-1 self-start">
                         {cat.children?.map((sub) => (
-                          <a
+                          <Link
                             key={sub.slug}
                             href={`/c/${cat.slug}/${sub.slug}`}
                             className="text-gray-500 hover:text-blue-600 text-[13px] py-1 flex items-center gap-2 transition-all hover:pl-1"
                           >
                             <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
                             {sub.label}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -258,13 +309,14 @@ export default function Navbar({
               {activeMobileCategory === cat.slug && (
                 <div className="bg-gray-50 flex flex-col py-2 rounded-b-xl animate-in slide-in-from-top-2">
                   {cat.children?.map((sub) => (
-                    <a
+                    <Link
                       key={sub.slug}
                       href={`/c/${cat.slug}/${sub.slug}`}
                       className="px-12 py-3 text-sm text-gray-500 hover:text-blue-600"
+                      onClick={() => setIsMobileMenuOpen(false)}
                     >
                       {sub.label}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               )}

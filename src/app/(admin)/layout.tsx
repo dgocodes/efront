@@ -4,7 +4,7 @@ import React from "react";
 import { useRouter, usePathname } from "next/navigation"; // Importe o usePathname
 import Link from "next/link"; // Use o Link do Next.js
 import Cookies from "js-cookie";
-import { LayoutDashboard, Users, ShoppingBag, LogOut } from "lucide-react";
+import { LayoutDashboard, HouseIcon, Users, ShoppingBag, LogOut } from "lucide-react";
 
 export default function AdminLayout({
   children,
@@ -56,6 +56,12 @@ export default function AdminLayout({
             icon={<ShoppingBag size={20} />}
             label="Produtos"
             active={pathname.startsWith("/admin/produtos")}
+          />
+          <NavItem
+            href="/"
+            icon={<HouseIcon size={20} />}
+            label="Home Site"
+            active={pathname === "/"}
           />
         </nav>
 

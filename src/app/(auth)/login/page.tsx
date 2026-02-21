@@ -1,39 +1,41 @@
-// app/(auth)/login/page.tsx
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { loginRequest } from "@/lib/auth";
-import Cookies from "js-cookie";
+import { useRouter, useSearchParams } from "next/navigation";
+import { authService } from "@/lib/auth"; // Importe o serviço padronizado
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
+
+  const handleLogin = async (e: React.SubmitEvent) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-      // Agora 'data' já vem tipado como LoginResponse
-      const data = await loginRequest(email, senha);
+      // 1. Chama o serviço. A API C# já vai setar os Cookies HttpOnly automaticamente
+      const data = await authService.login(email, senha);
 
-      // Cookies.set("token", data.token, { expires: 1, path: "/" });
-      // Cookies.set("refreshToken", data.refreshToken, { expires: 7, path: "/" }); 
-      // Cookies.set("userType", data.tipo, { expires: 1, path: "/" });
-
-      // Redirecionamento
-      if (data.tipo === "Admin") {
+      // 2. Redirecionamento baseado no tipo retornado
+      // Dica: Use letras minúsculas ou enums para evitar erros de case-sensitive
+      if (data.tipo === "Admin" && !callbackUrl) {
         router.push("/admin");
-      } else if (data.tipo === "Rca" || data.tipo === "Televendas") {
-        router.push("/vendedor");
-      } else {
-        router.push("/");
+      } else if (callbackUrl) {
+        // Em vez de sempre mandar para a home, manda para a URL de origem
+        router.push(callbackUrl);
       }
+
+      // Força um refresh para garantir que o middleware do Next perceba os novos cookies
+      router.refresh();
     } catch (error: any) {
-      // O erro lançado pelo 'throw new Error' lá no serviço cai aqui
       alert(error.message);
-      console.error("Erro no login:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -55,7 +57,8 @@ export default function LoginPage() {
             <input
               type="email"
               required
-              className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+              disabled={loading}
+              className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none transition-all disabled:opacity-50"
               placeholder="seu@email.com"
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -68,7 +71,8 @@ export default function LoginPage() {
             <input
               type="password"
               required
-              className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+              disabled={loading}
+              className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none transition-all disabled:opacity-50"
               placeholder="••••••••"
               onChange={(e) => setSenha(e.target.value)}
             />
@@ -76,20 +80,12 @@ export default function LoginPage() {
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-lg hover:shadow-blue-200 transition-all transform active:scale-[0.98]"
+            disabled={loading}
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow-lg transition-all transform active:scale-[0.98] disabled:bg-slate-400"
           >
-            Acessar Painel
+            {loading ? "Autenticando..." : "Acessar Painel"}
           </button>
         </form>
-
-        <div className="mt-6 text-center">
-          <a
-            href="#"
-            className="text-sm text-slate-500 hover:text-blue-600 transition-colors"
-          >
-            Esqueceu sua senha?
-          </a>
-        </div>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import { Produto, SearchResponse } from '@/types/Produto';
+import { api } from './api';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
@@ -80,14 +81,8 @@ export async function getProdutos(filters: SearchFilters): Promise<SearchRespons
   });
 }
 
-/**
- * Busca um produto específico pelo Slug
- */
-export async function getProdutoBySlug(slug: string): Promise<Produto> {
-  // Seguindo o padrão REST /products/{slug}
-  return fetchFromApi<Produto>(`/products/${slug}`, undefined, {
-    next: { revalidate: 3600 } // Cache de 1 hora
-  });
+export async function getProdutoById(id: string): Promise<Produto> {
+  return api.get<Produto>(`/produtos/${id}`); 
 }
 
 /**

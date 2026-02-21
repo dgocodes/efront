@@ -124,6 +124,9 @@ export default function UsuariosPage() {
                 <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center">
                   Nível
                 </th>
+                <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-widest text-center">
+                  Sessão Ativa
+                </th>
                 <th className="px-8 py-5 text-[11px] font-black text-slate-400 uppercase tracking-widest text-right">
                   Ações
                 </th>
@@ -166,6 +169,15 @@ export default function UsuariosPage() {
                         }`}
                       >
                         {u.type || "User"}
+                      </span>
+                    </td>
+                    <td className="px-8 py-5 text-center">
+                      <span
+                        className={`px-3 py-1 rounded-lg text-[10px] font-black uppercase tracking-tighter ${
+                          u.sessionActive === true ? "bg-green-100 text-green-700" : "bg-red-100 text-red-700"
+                        }`}
+                      >
+                        {u.sessionActive === true ? "Ativa" : "Inativa"}
                       </span>
                     </td>
                     <td className="px-8 py-5 text-right">

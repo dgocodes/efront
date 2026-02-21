@@ -1,33 +1,34 @@
-import { getProdutoBySlug } from '@/lib/produtos';
+import { getProdutoById } from '@/lib/produtos';
 import ProductTabs from '@/components/product/ProductTabs';
 import BrandCarousel from '@/components/brand/BrandCarousel';
 import ProductInfo from '@/components/product/ProductInfo';
 import ProductGallery from '@/components/product/ProductGallery';
 
-// Importante: Defina o tipo do params como uma Promise
+
 export default async function ProductPage(props: {
-    params: Promise<{ slug: string }>
+    params: Promise<{ slug: string[] }>
 }) {
     // 1. Resolve a promise do params primeiro
     const resolvedParams = await props.params;
-    const slug = resolvedParams.slug;
+    const slugs = resolvedParams.slug || [];
 
-    if (!slug) 
-        return <div>Erro: Slug não encontrado</div>;
+    console.log('Parâmetros recebidos:', resolvedParams);
+    console.log('Slugs extraídos:', slugs);
+    console.log('Quantidade de slugs:', slugs.length);
 
-    const produto = await getProdutoBySlug(slug);
+    if (slugs.length > 2) 
+        return <div>Erro: Slug não encontrado</div>;    
+
+    console.log('Buscando produto com slug:', slugs);
+
+    const produto = await getProdutoById(slugs[0]);
 
     if (!produto) return (
         <div className="min-h-screen flex items-center justify-center">
             <h1 className="text-xl font-bold">Produto não encontrado</h1>
         </div>
     );
-
-    console.log('Produto encontrado:', produto);
-
-    // Limpeza de dados para evitar erro de serialização (Plain Objects)
-    const p = JSON.parse(JSON.stringify(produto));
-
+ 
     return (
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
 
@@ -37,26 +38,25 @@ export default async function ProductPage(props: {
                 {/* LADO ESQUERDO: Galeria de Imagens 
                     Passamos o ID principal e as fotos extras se houver */}
                 <ProductGallery
-                    productId={p.id}
-                    alt={p.nome}
-                    additionalImages={p.imagensAdicionais || []}
+                    productId={produto.id}
+                    alt={produto.nome}
                 />
 
                 {/* LADO DIREITO: Informações e Compra */}
-                <ProductInfo product={p} />
+                <ProductInfo product={produto} />
 
             </div>
 
             {/* Abas de Descrição / Especificações Técnicas */}
             <ProductTabs
-                description={p.descricao_html || p.description}
-                specs={p.especificacoes || p.specs || []}
+                description={produto.InfAdicionais || produto.InfAdicionais}
+                specs={[]}
             />
 
             {/* Seção de Marcas Relevantes (JSON que criamos no início) */}
-            <div className="mt-20 border-t border-gray-100 pt-16">
-                <BrandCarousel />
-            </div>
+            {/* <div className="mt-20 border-t border-gray-100 pt-16">
+                <BrandCarousel title={produto?.marca || 'Marcas'} />
+            </div> */}
         </main>
     );
 }

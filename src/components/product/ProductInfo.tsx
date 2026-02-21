@@ -1,15 +1,16 @@
 // components/product/ProductInfo.tsx
+import { Produto } from '@/types/Produto';
 import { ShoppingCart, Truck, ShieldCheck } from 'lucide-react';
 
-export default function ProductInfo({ product }: { product: any }) {
+export default function ProductInfo({ product }: { product: Produto }) {
     return (
         <div className="flex flex-col">
             {/* Marca e Título */}
             <span className="text-blue-600 text-xs font-black uppercase tracking-widest mb-2">
-                {product.brand}
+                {product.marca}
             </span>
             <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tighter mb-4 leading-none">
-                {product.name}
+                {product.nome}
             </h1>
 
             {/* Avaliações Simples */}
@@ -20,18 +21,18 @@ export default function ProductInfo({ product }: { product: any }) {
 
             {/* Preços */}
             <div className="bg-gray-50 p-6 rounded-3xl mb-8">
-                <span className="text-gray-400 line-through text-sm">De: R$ {product.oldPrice}</span>
+                <span className="text-gray-400 line-through text-sm">De: R$ {product.preco}</span>
                 <div className="flex items-baseline gap-2">
                     <span className="text-xs font-bold text-gray-900">R$</span>
                     <span className="text-4xl font-black text-gray-900 tracking-tighter">
-                        {product.price}
+                        {product.preco}
                     </span>
                 </div>
                 <p className="text-green-600 text-sm font-bold mt-1">
                     No PIX com 10% de desconto
                 </p>
                 <p className="text-gray-500 text-xs mt-1">
-                    Ou em até 10x de R$ {(product.price / 10).toFixed(2)} sem juros
+                    Ou em até 10x de R$ {(product.preco / 10).toFixed(2)} sem juros
                 </p>
             </div>
 

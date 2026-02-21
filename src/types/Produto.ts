@@ -23,6 +23,8 @@ export class Produto {
   marca: string;
   preco: number;
   estoque: number;
+  InfAdicionais: string;
+  descricao_html: string
 
   constructor(data?: Partial<Produto>) {
     this.id = data?.id ?? '';
@@ -31,6 +33,8 @@ export class Produto {
     this.marca = data?.marca ?? '';
     this.preco = data?.preco ?? 0;
     this.estoque = data?.estoque ?? 0;
+    this.InfAdicionais = data?.InfAdicionais ?? '';
+    this.descricao_html = data?.descricao_html ?? '';
   }
 }
 
